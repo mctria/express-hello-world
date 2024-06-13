@@ -16,6 +16,7 @@ const cacheDir = process.env.PUPPETEER_CACHE_DIR || '/tmp/puppeteer_cache';
 
 if (!fs.existsSync(cacheDir)) {
     fs.mkdirSync(cacheDir, { recursive: true });
+    fs.chmodSync(cacheDir, '0777'); // Set permissions if necessary
   }
 
 // express class
@@ -332,7 +333,7 @@ app.get('/drama/:drama/:slug',(req,res)=>{
         var more_episode = [];
 
         try{
-        var browser = await puppeteer.launch({headless:"new", userDataDir: cacheDir });
+        var browser = await puppeteer.launch({headless:"new", args: ['--no-sandbox', '--disable-setuid-sandbox'], userDataDir: cacheDir });
         var page = await browser.newPage();        
         await page.goto(url);
         const show = await page.evaluate((as,page)=>{
@@ -377,7 +378,12 @@ app.get('/drama/:drama/:slug',(req,res)=>{
 
         if (ShowMore.length === 1){
             // console.log({a:as,page:pages,url:url})
+            try{
             let innerep = await MoreEpisodes(as,pages+1,url);
+            } catch (e) {
+                console.log("Error in More Episode ==> ", e)
+                return more_episode;
+            }
             // console.log(innerep)
             innerep.forEach((el)=>{
                 more_episode.push(el);
