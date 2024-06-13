@@ -345,9 +345,9 @@ app.get("/drama/:drama/:slug", (req, res) => {
       try {
         var browser = await puppeteer.launch({
           headless: "new",
-          args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
           userDataDir: cacheDir,
-          executablePath: '/usr/bin/google-chrome-stable' // Path to the installed Chrome binary
+        //   executablePath: '/usr/bin/google-chrome-stable' // Path to the installed Chrome binary
         });
         var page = await browser.newPage();
         await page.goto(url);

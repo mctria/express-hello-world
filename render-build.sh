@@ -2,12 +2,28 @@
 
 # Update and install dependencies
 apt-get update
-apt-get install -y wget --no-install-recommends
-apt-get install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libcups2 libdbus-1-3 libdrm2 libxkbcommon-x11-0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libgtk-3-0
+apt-get install -y wget gnupg2
 
-# Download Chrome
+# Install Chrome dependencies
+apt-get install -y \
+    libasound2 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdbus-1-3 \
+    libdrm2 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libgtk-3-0 \
+    libnss3 \
+    libxshmfence1 \
+    fonts-liberation
+
+# Download and install Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb
 apt-get -f install -y
 
-echo "Dependencies installed."
+echo "Chrome and dependencies installed."
