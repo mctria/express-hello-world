@@ -9,6 +9,14 @@ import cors from 'cors';
 // import "./global.js";
 // import "./hamfunction.js"
 import puppeteer from "puppeteer";
+import fs from "fs";
+
+// pupperter cache dir
+const cacheDir = process.env.PUPPETEER_CACHE_DIR || '/tmp/puppeteer_cache';
+
+if (!fs.existsSync(cacheDir)) {
+    fs.mkdirSync(cacheDir, { recursive: true });
+  }
 
 // express class
 var app = express();
@@ -324,7 +332,7 @@ app.get('/drama/:drama/:slug',(req,res)=>{
         var more_episode = [];
 
         try{
-        var browser = await puppeteer.launch({headless:"new"});
+        var browser = await puppeteer.launch({headless:"new", userDataDir: cacheDir });
         var page = await browser.newPage();        
         await page.goto(url);
         const show = await page.evaluate((as,page)=>{
@@ -707,7 +715,7 @@ app.get("/animi/home",(req,res)=>{
 
 });
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8080;
 app.listen(port,()=>{
     console.log("Your Server Running in port %d",port
 )

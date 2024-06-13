@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "run test",
-    "start": "node index.js"
+    "test": "run test"
   },
   "author": "celcilin c.s",
   "license": "ISC",
