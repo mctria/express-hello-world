@@ -1,0 +1,23 @@
+slider 
+ - $("#slider > div > div")
+
+Trending
+ - $("#trending-home > div.swiper-container.swiper-container-initialized.swiper-container-horizontal > div.swiper-wrapper > div")
+
+Top Airing
+ - $("#anime-featured > div > div > div > div:nth-child(1) > div > div.anif-block-ul > ul > li")
+
+Most Popular
+ - $("#anime-featured > div > div > div > div:nth-child(2) > div > div.anif-block-ul > ul > li")
+
+Most Favorite
+ - $("#anime-featured > div > div > div > div:nth-child(3) > div > div.anif-block-ul > ul > li")
+
+Lastest Completed
+ - $("#anime-featured > div > div > div > div:nth-child(4) > div > div.anif-block-ul > ul > li")
+
+Latest Episode
+ - $("#main-content > section:nth-child(2) > div.tab-content > div > div.film_list-wrap > div")
+
+New
+ - $("#main-content > section:nth-child(5) > div.tab-content > div > div.film_list-wrap > div")

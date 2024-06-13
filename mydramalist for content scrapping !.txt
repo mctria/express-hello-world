@@ -1,0 +1,60 @@
+myasiantv movie in home $('#list-1 > div:nth-child(2) > ul > li')
+
+$('#list-1 > div > ul > li')
+
+Drama
+
+$('#frmFilter > span')
+
+ - $('#frmFilter > span:nth-child(1) > select > option') // all options
+ - $('#frmFilter > span:nth-child(1)') // main 
+
+
+
+mydramalist for content scrapping !!!
+
+entering into main url
+https://mydramalist.com/search?q=go-ahead
+
+its for navigating into main url
+$('#mdl-40911 > div > div > div.col-xs-3.row-cell.film-cover.cover > div > a').attr('href');
+
+
+
+Drama Details
+#content > div > div.container-fluid.title-container > div > div.col-lg-4.col-md-4 > div > div:nth-child(2) > div.box-body.light-b > ul
+$('div.box-body.light-b > ul > li')
+
+
+Detail Description And Bar
+#show-detailsxx
+ - Description
+$('#show-detailsxx > div.show-synopsis')
+
+ - Related content
+$('#show-detailsxx > div.show-detailsxss')
+
+
+Subscription
+#content > div > div.container-fluid.title-container > div > div.col-lg-8.col-md-8.col-rightx > div:nth-child(3) > div.box-body.wts
+
+ - base 
+$('div.box-body.wts > div ')
+
+ - image
+$('div.box-body.wts > div ').find('img)
+
+- text
+$('div.box-body.wts > div ').find('a')
+
+
+cast
+$('div.p-a-sm > ul > li')
+
+
+photo /photos
+$("div.box-body > div").slice(0,2);
+
+
+episode img /episodes
+$('div > div.episodes.clear.m-t > div')
