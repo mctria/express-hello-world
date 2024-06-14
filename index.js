@@ -10,14 +10,15 @@ import cors from "cors";
 // import "./hamfunction.js"
 import puppeteer from "puppeteer";
 import fs from "fs";
+require("dotenv").config();
 
 // pupperter cache dir
-const cacheDir = process.env.PUPPETEER_CACHE_DIR || "/tmp/puppeteer_cache";
+// const cacheDir = process.env.PUPPETEER_CACHE_DIR || "/tmp/puppeteer_cache";
 
-if (!fs.existsSync(cacheDir)) {
-  fs.mkdirSync(cacheDir, { recursive: true });
-  fs.chmodSync(cacheDir, "0777"); // Set permissions if necessary
-}
+// if (!fs.existsSync(cacheDir)) {
+//   fs.mkdirSync(cacheDir, { recursive: true });
+//   fs.chmodSync(cacheDir, "0777"); // Set permissions if necessary
+// }
 
 // express class
 var app = express();
@@ -345,9 +346,12 @@ app.get("/drama/:drama/:slug", (req, res) => {
       try {
         var browser = await puppeteer.launch({
           headless: "new",
-        //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
-          userDataDir: cacheDir,
-        //   executablePath: '/usr/bin/google-chrome-stable' // Path to the installed Chrome binary
+          //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
+          executablePath:
+            process.env.NODE_ENV === "production"
+              ? process.env.PUPPETEER_EXECUTABLE_PATH
+              : puppeteer.executablePath(),
+          //   executablePath: '/usr/bin/google-chrome-stable' // Path to the installed Chrome binary
         });
         var page = await browser.newPage();
         await page.goto(url);
@@ -410,7 +414,7 @@ app.get("/drama/:drama/:slug", (req, res) => {
       if (ShowMore.length === 1) {
         // console.log({a:as,page:pages,url:url})
         // try {
-          let innerep = await MoreEpisodes(as, pages + 1, url);
+        let innerep = await MoreEpisodes(as, pages + 1, url);
         // } catch (e) {
         //   console.log("Error in More Episode ==> ", e);
         //   return more_episode;
@@ -521,15 +525,15 @@ app.get("/drama/:drama/:slug", (req, res) => {
       // Episodes $ Date
       if (ShowMore.length === 1) {
         let ep = episodes;
-        try{
-        var Extra_episode = await MoreEpisodes(q, page, url);
-        // console.log(episodes);
-        Extra_episode.forEach((el) => {
-          episodes.push(el);
-        });
+        try {
+          var Extra_episode = await MoreEpisodes(q, page, url);
+          // console.log(episodes);
+          Extra_episode.forEach((el) => {
+            episodes.push(el);
+          });
         } catch (e) {
           episodes = ep;
-          console.warn("Error in Extra Ep ==>", e)
+          console.warn("Error in Extra Ep ==>", e);
         }
       }
 
