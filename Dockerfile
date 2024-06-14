@@ -6,6 +6,13 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm install
+
+# Change permissions of the package-lock.json file
+RUN chmod 777 package-lock.json
+
+# RUN npm install
+RUN npm ci
+
 COPY . .
+
 CMD [ "node", "index.js" ]

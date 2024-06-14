@@ -10,7 +10,7 @@ import cors from "cors";
 // import "./hamfunction.js"
 import puppeteer from "puppeteer";
 import fs from "fs";
-require("dotenv").config();
+import { config } from "dotenv";
 
 // pupperter cache dir
 // const cacheDir = process.env.PUPPETEER_CACHE_DIR || "/tmp/puppeteer_cache";
