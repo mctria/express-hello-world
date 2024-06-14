@@ -27,5 +27,7 @@ dpkg -i google-chrome-stable_current_amd64.deb
 apt-get -f install -y
 
 PUPPETEER_SKIP_DOWNLOAD=false npm install puppeteer
+npx puppeteer install
+npx puppeteer browsers install chrome
 
 echo "Chrome and dependencies installed."
