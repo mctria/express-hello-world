@@ -20,10 +20,10 @@ import { config } from "dotenv";
 //   fs.chmodSync(cacheDir, "0777"); // Set permissions if necessary
 // }
 
-// express class
+// express class 
 var app = express();
-// main url
-const base_url = "https://www1.myasiantv.cc/";
+// main url "https://www1.myasiantv.cc/" ||
+const base_url =  "https://www11.myasiantv.tv/";
 // app.use(express.json())
 
 // header
