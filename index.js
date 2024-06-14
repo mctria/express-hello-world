@@ -409,12 +409,12 @@ app.get("/drama/:drama/:slug", (req, res) => {
 
       if (ShowMore.length === 1) {
         // console.log({a:as,page:pages,url:url})
-        try {
+        // try {
           let innerep = await MoreEpisodes(as, pages + 1, url);
-        } catch (e) {
-          console.log("Error in More Episode ==> ", e);
-          return more_episode;
-        }
+        // } catch (e) {
+        //   console.log("Error in More Episode ==> ", e);
+        //   return more_episode;
+        // }
         // console.log(innerep)
         innerep.forEach((el) => {
           more_episode.push(el);
@@ -520,11 +520,17 @@ app.get("/drama/:drama/:slug", (req, res) => {
 
       // Episodes $ Date
       if (ShowMore.length === 1) {
+        let ep = episodes;
+        try{
         var Extra_episode = await MoreEpisodes(q, page, url);
         // console.log(episodes);
         Extra_episode.forEach((el) => {
           episodes.push(el);
         });
+        } catch (e) {
+          episodes = ep;
+          console.warn("Error in Extra Ep ==>", e)
+        }
       }
 
       episodes?.reverse();
