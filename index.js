@@ -23,7 +23,7 @@ import { config } from "dotenv";
 // express class 
 var app = express();
 // main url "https://www1.myasiantv.cc/" ||
-const base_url =  "https://www11.myasiantv.tv/";
+const base_url =  "https://www.myasiantv.ac/";
 // app.use(express.json())
 
 // header
